@@ -22,35 +22,9 @@ public:
 		while (isEmpty() != true) popFront();
 	}
 
-	void pushBack(itemT newItem)
-	{
-		if (size == 0)
-		{
-			data = new unit;
-			data->item = newItem;
-			data->next = NULL;
-			size++;
-		}
-		else
-		{
-			unit* it;
-			for (it = data; it->next != NULL; it=it->next);
-			it->next = new unit;
-			it->next->item = newItem;
-			it->next->next = NULL;
-			size++;
-		}
-	}
-
-	itemT popFront()
-	{
-		itemT first = data->item;
-		unit* tmp = data->next;
-		delete data;
-		data = tmp;
-		size--;
-		return first;
-	}
+	void pushBack(itemT newItem);
+	itemT popFront();
+	void print();
 
 	bool isEmpty()
 	{
@@ -63,9 +37,43 @@ public:
 		return size;
 	}
 
-	void print()
-	{
-		std::cout << "A queue elemei: " << std::endl;
-		for (unit* it = data; it != NULL; it = it->next) std::cout << it->item << " " << std::endl;
-	}
 };
+
+template<class itemT>
+void Queue<itemT>::pushBack(itemT newItem)
+{
+	if (size == 0)
+	{
+		data = new unit;
+		data->item = newItem;
+		data->next = NULL;
+		size++;
+	}
+	else
+	{
+		unit* it;
+		for (it = data; it->next != NULL; it = it->next);
+		it->next = new unit;
+		it->next->item = newItem;
+		it->next->next = NULL;
+		size++;
+	}
+}
+
+template<class itemT>
+itemT Queue<itemT>::popFront()
+{
+	itemT first = data->item;
+	unit* tmp = data->next;
+	delete data;
+	data = tmp;
+	size--;
+	return first;
+}
+
+template<class itemT>
+void Queue<itemT>::print()
+{
+	std::cout << "A queue elemei: " << std::endl;
+	for (unit* it = data; it != NULL; it = it->next) std::cout << it->item << " " << std::endl;
+}
