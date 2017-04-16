@@ -9,17 +9,19 @@ class Vector
 
 public:
 
-	Vector() : data(NULL), size(10), count(0) {}; //parameter nelkuli konstruktor
-	Vector(int size) : size(size) //konstruktor: megadhato a vektor kezdomerete
+	Vector() : size(10), count(0) //parameter nelkuli konstruktor
 	{
-		count = 0;
+		data = new itemT[size];
+	} 
+	Vector(int size) : size(size), count(0) //konstruktor: megadhato a vektor kezdomerete
+	{
 		data = new itemT[size];
 	}
 	Vector(const Vector& v); //masolo konstruktor
 	~Vector() { delete[] data; } //destruktor
 
-	const int getSize() { return size; }
-	const int getCount() { return count; }
+	const int getSize() const { return size; }
+	const int getCount() const { return count; }
 	bool isEmpty()
 	{
 		if (count == 0) return true;
@@ -27,11 +29,11 @@ public:
 	}
 
 	Vector& operator=(const Vector& v); //egyenlo operator
-	itemT& operator[](int n); //indexelo operator
+	itemT& operator[](int n) const; //indexelo operator
 	void pushBack(itemT newItem); //a vektor vegen elhelyez egy elemet
 	void empty(); //kiuriti a vektort
 	// bool insert(int n, itemT newItem); //az n. indexu elem moge szurja be a megadott elemet
-	void print(); //kiirja a vektor tartalmat
+	void print() const; //kiirja a vektor tartalmat
 
 
 
@@ -57,7 +59,7 @@ Vector<itemT>& Vector<itemT>::operator=(const Vector& v)
 }
 
 template<class itemT>
-itemT& Vector<itemT>::operator[](int n)
+itemT& Vector<itemT>::operator[](int n) const
 {
 	return data[n];
 }
@@ -91,7 +93,7 @@ void Vector<itemT>::empty()
 }
 
 template<class itemT>
-void Vector<itemT>::print()
+void Vector<itemT>::print() const
 {
 	std::cout << "A vector tartalma:" << std::endl;
 	for (int i = 0; i < count; i++) std::cout << data[i] << std::endl;

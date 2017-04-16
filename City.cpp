@@ -6,7 +6,7 @@ City::City(const char* name)
 	dist = -1;
 }
 
-City::City(const City& c)
+City::City(const City& c) : name(NULL)
 {
 	(*this) = c;
 }
@@ -22,16 +22,15 @@ void City::setDist(const int n)
 	if (n >= 0) dist = n;
 }
 
-void City::addNeighbor(City* nptr)
+void City::addNeighbor(City* c)
 {
-	neighbors.pushBack(nptr);
+	neighbors.pushBack(c);
 }
 
 City& City::operator=(const City& c)
 {
 	delete[] this->name;
-	this->name = new char[strlen(c.name) + 1];
-	strcpy(this->name, c.name);
+	this->setName(c.name);
 	this->dist = c.dist;
 	this->neighbors = c.neighbors;
 	return *this;

@@ -12,14 +12,15 @@ public:
 	City(const City& c);
 	~City() { delete[] name; }
 
-	const char* getName() { return name; }
+	const char* getName() const { return name; }
 	void setName(const char* name);
 	
 
-	const int getDist() { return dist; }
+	const int getDist() const { return dist; }
 	void setDist(const int n);
 
-	void addNeighbor(City* nptr);
+	const Vector<City*> getNeighbors() const { return neighbors; }
+	void addNeighbor(City* c);
 
 	City& operator=(const City& c);
 	bool operator==(const City& c);
