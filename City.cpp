@@ -8,9 +8,7 @@ City::City(const char* name)
 
 City::City(const City& c)
 {
-	this->name = new char[strlen(c.name) + 1];
-	strcpy(this->name, c.name);
-
+	(*this) = c;
 }
 
 void City::setName(const char* name)
@@ -34,9 +32,15 @@ City& City::operator=(const City& c)
 	delete[] this->name;
 	this->name = new char[strlen(c.name) + 1];
 	strcpy(this->name, c.name);
-	int n = c.getDist();
-
+	this->dist = c.dist;
+	this->neighbors = c.neighbors;
+	return *this;
 }
 
+bool City::operator==(const City& c)
+{
+	if (strcmp(this->name, c.name) == 0) return true;
+	return false;
+}
 
 
