@@ -32,7 +32,7 @@ public:
 		return false;
 	}
 	
-	const int getSize()
+	const int getSize() const
 	{
 		return size;
 	}

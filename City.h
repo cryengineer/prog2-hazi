@@ -8,6 +8,7 @@ class City
 	Vector<City*> neighbors; //a szomszedos varosokra mutato pointereket tarolja
 
 public:
+	City();
 	City(const char* name);
 	City(const City& c);
 	~City() { delete[] name; }

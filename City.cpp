@@ -1,18 +1,26 @@
 #include "City.h"
+City::City()
+{
+	name = new char[1];
+	dist = -1;
+}
 
 City::City(const char* name)
 {
+	this->name = new char[1];
 	setName(name);
 	dist = -1;
 }
 
-City::City(const City& c) : name(NULL)
+City::City(const City& c)
 {
+	name = new char[1];
 	(*this) = c;
 }
 
 void City::setName(const char* name)
 {
+	delete[] this->name;
 	this->name = new char[strlen(name) + 1];
 	strcpy(this->name, name);
 }
@@ -29,7 +37,6 @@ void City::addNeighbor(City* c)
 
 City& City::operator=(const City& c)
 {
-	delete[] this->name;
 	this->setName(c.name);
 	this->dist = c.dist;
 	this->neighbors = c.neighbors;

@@ -31,6 +31,8 @@ public:
 	Vector& operator=(const Vector& v); //egyenlo operator
 	itemT& operator[](int n) const; //indexelo operator
 	void pushBack(itemT newItem); //a vektor vegen elhelyez egy elemet
+	bool isElement(itemT element); //true, ha az adott elem benne van a vektorban, kulonben false
+	int position(itemT element); //visszaadja az argumentumkent kapott elem indexet, -1et ad, ha nincs benne a vektorban
 	void empty(); //kiuriti a vektort
 	// bool insert(int n, itemT newItem); //az n. indexu elem moge szurja be a megadott elemet
 	void print() const; //kiirja a vektor tartalmat
@@ -82,6 +84,20 @@ void Vector<itemT>::pushBack(itemT newItem)
 		delete[] data;
 		data = tmp;
 	}
+}
+
+template<class itemT>
+bool Vector<itemT>::isElement(itemT element)
+{
+	for (int i = 0; i < count; i++) if (data[i] == element) return true;
+	return false;
+}
+
+template<class itemT>
+int Vector<itemT>::position(itemT element)
+{
+	for (int i = 0; i < count; i++) if (data[i] == element) return i;
+	return -1;
 }
 
 template<class itemT>

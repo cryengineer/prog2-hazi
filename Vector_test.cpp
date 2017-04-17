@@ -20,6 +20,8 @@ int main()
 	intVector2.empty();
 	if (intVector2.isEmpty() == true) cout << "intvector2 ures :(";
 	intVector.print();
+	cout << endl << intVector.isElement(9);
+	cout << endl << intVector.position(0);
 
 
 	return 0;

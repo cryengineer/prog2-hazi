@@ -25,6 +25,10 @@ int main()
 	c2.getNeighbors()[0]->setDist(3);
 	cout << c2.getNeighbors()[0]->getDist() << endl;
 	cout << c2.getNeighbors().getCount() << endl;
+	City c4;
+	c4.setName("asd");
+	cout << c4.getName();
+	
 
 	return 0;
 }
