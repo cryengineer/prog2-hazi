@@ -5,9 +5,10 @@ class City
 {
 	char* name;
 	int dist; //a BFS soran a gyokertol valo tavolsagot tarolja
-	Vector<City*> neighbors; //a szomszedos varosokra mutato pointereket tarolja
+	//Vector<City*> neighbors; //a szomszedos varosokra mutato pointereket tarolja
 
 public:
+	Vector<City*> neighbors; //a szomszedos varosokra mutato pointereket tarolja
 	City();
 	City(const char* name);
 	City(const City& c);
@@ -20,10 +21,11 @@ public:
 	const int getDist() const { return dist; }
 	void setDist(const int n);
 
-	const Vector<City*> getNeighbors() const { return neighbors; }
+	//const Vector<City*>& getNeighbors() const { return neighbors; }
 	void addNeighbor(City* c);
 
 	City& operator=(const City& c);
 	bool operator==(const City& c);
 
+	
 };

@@ -15,6 +15,7 @@ public:
 	~Map() {}
 	
 	void readFile();
+	void print();
 
 
 

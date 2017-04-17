@@ -7,6 +7,7 @@
 int main()
 {
 	Map map;
+	map.print();
 
 
 
