@@ -1,2 +1,6 @@
-Eger Budapest
-Eger Pecs
+Los_Angeles Santa_Barbara
+Bakersfield Los_Angeles
+Bakersfield Sacramento
+Sacramento San_Francisco
+San_Jose San_Francisco
+Santa_Barbara San_Jose
