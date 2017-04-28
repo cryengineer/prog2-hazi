@@ -1,4 +1,5 @@
 #include "City.h"
+using namespace std;
 City::City()
 {
 	name = new char[1];
@@ -50,3 +51,8 @@ bool City::operator==(const City& c)
 }
 
 
+ostream& operator<<(ostream& os, const City& c)
+{
+	cout << c.getName() << ", dist: " << c.getDist();
+	return os;
+}

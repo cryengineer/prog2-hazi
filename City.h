@@ -21,12 +21,10 @@ public:
 	const int getDist() const { return dist; }
 	void setDist(const int n);
 
-	//const Vector<City*>& getNeighbors() const { return neighbors; }
 	void addNeighbor(City* c);
 
 	City& operator=(const City& c);
 	bool operator==(const City& c);
 
-
-	
+	friend std::ostream& operator<<(std::ostream& os, const City& c);
 };

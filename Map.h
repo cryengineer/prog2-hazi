@@ -8,19 +8,17 @@ class Map
 {
 	Vector<City> cities;
 public:
-	Map()
+	Map(const char* testFile)
 	{
-		readFile();
+		readFile(testFile);
 	}
 	~Map() {}
 	
-	void readFile();
-	void print();
-	void BFS(const char* root);
-
-
-
-
+	const int getSize() { return cities.getSize(); }
+	void readFile(const char* testFile);
+	void printMap();
+	void printTransfers(const int rootIndex);
+	void BFS(const int rootIndex);
 
 };
 

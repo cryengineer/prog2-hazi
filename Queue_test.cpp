@@ -1,7 +1,6 @@
 #include "Queue.h"
 using namespace std;
 
-
 int main()
 {
 	cout << "TEST: int tipussal" << endl;

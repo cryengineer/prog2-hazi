@@ -34,7 +34,6 @@ public:
 	bool isElement(itemT element); //true, ha az adott elem benne van a vektorban, kulonben false
 	int position(itemT element); //visszaadja az argumentumkent kapott elem indexet, -1et ad, ha nincs benne a vektorban
 	void empty(); //kiuriti a vektort
-	// bool insert(int n, itemT newItem); //az n. indexu elem moge szurja be a megadott elemet
 	void print() const; //kiirja a vektor tartalmat
 
 

@@ -4,9 +4,9 @@
 
 using namespace std;
 
-void Map::readFile()
+void Map::readFile(const char* testFile)
 {
-	std::ifstream input("input.txt");
+	std::ifstream input(testFile);
 	char* first = new char[20];
 	char* second = new char[20];
 	int n1, n2;
@@ -38,23 +38,32 @@ void Map::readFile()
 	}
 }
 
-void Map::print()
+void Map::printMap()
 {
+	cout << "Az alabbi varosok kozotti kozlekedest ismerem:" << endl;
 	for (int i = 0; i < cities.getCount(); i++)
 	{
-		cout << i << " " << cities[i].getName() << ", tavolsag:" << cities[i].getDist() << endl;
-		for (int j = 0; j < cities[i].neighbors.getCount(); j++)
+		cout << i+1 << " " << cities[i].getName() << endl;
+	}
+}
+
+void Map::printTransfers(int rootIndex)
+{
+	cout << cities[rootIndex].getName() << " varosbol a felsorolt varosokba utazva az atszallasok szama: " << endl;
+	for (int i = 0; i < cities.getCount(); i++)
+	{
+		if (i != rootIndex)
 		{
-			cout << cities[i].neighbors[j]->getName() << endl;
+			cout << cities[i].getName() << ": ";
+			if (cities[i].getDist() != -1) cout << cities[i].getDist() << endl;
+			else cout << "ide sajnos nem tudsz eljutni. :(" << endl;
 		}
 	}
 }
 
-void Map::BFS(const char* root)
+void Map::BFS(const int rootIndex)
 {
 	Queue<City*> q;
-	City c(root);
-	int rootIndex=cities.position(c);
 	cities[rootIndex].setDist(0);
 	for (int i = 0; i < cities[rootIndex].neighbors.getCount();i++)
 	{
@@ -73,5 +82,4 @@ void Map::BFS(const char* root)
 			}
 		}
 	}
-
 }

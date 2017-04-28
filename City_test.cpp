@@ -1,34 +1,22 @@
-#include <iostream>
 #include "City.h"
 
 using namespace std;
 
-
 int main()
 {
 	City c1("Eger");
-	cout << c1.getName() << endl;
-	City c2("Budapest");
-	cout << c2.getName() << endl;
-	City c1_copy(c1);
-	cout << c1_copy.getName() << endl;
-	City c3("Prugy");
-	cout << c3.getName() << endl;
-	c3.setName("Solymar");
-	cout << c3.getName() << endl;
-	cout << (c1_copy == c3) << endl;
-	c1_copy = c3;
-	cout << (c1_copy == c3) << endl;
-	c2.addNeighbor(&c1);
-	c2.addNeighbor(&c3);
-	cout << c2.getNeighbors()[0]->getDist() << endl;
-	c2.getNeighbors()[0]->setDist(3);
-	cout << c2.getNeighbors()[0]->getDist() << endl;
-	cout << c2.getNeighbors().getCount() << endl;
-	City c4;
-	c4.setName("asd");
-	cout << c4.getName();
-	
+	cout << c1;
+	City c2;
+	c2.setName("Egerszalok");
+	c2.setDist(3);
+	City c3(c2);
+	cout << c3;
+	c1.addNeighbor(&c3);
+	cout << "Eger szomszedja: " << c1.neighbors[0]->getName() << endl;
+	if (!(c1 == c3)) cout << "Eger!=Egerszalok" << endl;
+	c1 = c3;
+	if (c1 == c3) cout << "Egerszalok=Egerszalok" << endl;
+	cout << "TEST vege" << endl;
 
 	return 0;
 }
