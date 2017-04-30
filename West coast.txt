@@ -1,0 +1,6 @@
+Seattle Portland
+Sacramento Portland
+San_Francisco Sacramento
+San_Jose San_Francisco
+San_Jose Los_Angeles
+San_Diego Los_Angeles

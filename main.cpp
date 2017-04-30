@@ -4,21 +4,32 @@ using namespace std;
 
 int main()
 {
-	Map map("input2.txt");
-	map.printMap();
-	cout << endl << "Kerlek add meg annak a varosnak az indexet, ahonnan utazni szeretnel." << endl;
-	int rootIndex = -1;
-	cin >> rootIndex;
-	while (rootIndex<1 || rootIndex > map.getSize())
+	try
 	{
-		cout << "Nincs ilyen indexu varos, a fenti indexek kozul valassz." << endl;
+		Map map("Hungary.txt");
+		map.printMap();
+		cout << endl << "Kerlek add meg annak a varosnak az indexet, ahonnan utazni szeretnel." << endl;
+		int rootIndex = -1;
 		cin >> rootIndex;
-	}
-	rootIndex--;
-	cout << endl;
+		while (rootIndex<1 || rootIndex > map.getSize())
+		{
+			cout << "Nincs ilyen indexu varos, a fenti indexek kozul valassz." << endl;
+			cin >> rootIndex;
+		}
+		rootIndex--;
+		cout << endl;
 
-	map.BFS(rootIndex);
-	map.printTransfers(rootIndex);
-	
+		map.BFS(rootIndex);
+		map.printTransfers(rootIndex);
+	}
+	catch (const char* exc)
+	{
+		cout << "HIBA: " << exc << endl << "A program leall." << endl;
+	}
+	catch (const int)
+	{
+		cout << "HIBA: a megadott terkep ures." << endl << "A program leall." << endl;
+	}
+
 	return 0;
 }

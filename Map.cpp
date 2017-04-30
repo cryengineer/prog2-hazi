@@ -10,11 +10,12 @@ void Map::readFile(const char* testFile)
 	char* first = new char[20];
 	char* second = new char[20];
 	int n1, n2;
-	if (!input) std::cout << "Hiba a fajl megnyitasakor :(" << std::endl;
-	else
+	if (!input) throw "A fajl megnyitasa sikertelen.";
+	try
 	{
 		while (input.eof() == 0)
 		{
+			if (cities.getCount() == cities.getSize()) throw "FIGYELEM! Az inputban megadott terkep merete tul nagy, a beolvasott terkep hianyos lehet!";
 			input >> first;
 			input >> second;
 			City c1(first);
@@ -34,8 +35,13 @@ void Map::readFile(const char* testFile)
 			cities[n1].neighbors.pushBack(&(cities[n2]));
 			cities[n2].neighbors.pushBack(&(cities[n1]));
 		}
-		input.close();
+		if (cities.getCount()==1) throw 0; //ha az input fajlban egy sor sincs, vagyis a terkep ures
 	}
+	catch (const char* exc)
+	{
+		cout << exc << endl;
+	}
+	input.close();
 }
 
 void Map::printMap()
@@ -55,7 +61,11 @@ void Map::printTransfers(int rootIndex)
 		if (i != rootIndex)
 		{
 			cout << cities[i].getName() << ": ";
-			if (cities[i].getDist() != -1) cout << cities[i].getDist() << endl;
+			if (cities[i].getDist() != -1)
+			{
+				if (cities[i].getDist() == 1) cout << "van kozvetlen jarat" << endl;
+				else cout << cities[i].getDist() - 1 << endl;
+			}
 			else cout << "ide sajnos nem tudsz eljutni. :(" << endl;
 		}
 	}

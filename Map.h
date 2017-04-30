@@ -14,7 +14,7 @@ public:
 	}
 	~Map() {}
 	
-	const int getSize() { return cities.getSize(); }
+	const int getSize() { return cities.getCount(); }
 	void readFile(const char* testFile);
 	void printMap();
 	void printTransfers(const int rootIndex);
