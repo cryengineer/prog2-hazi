@@ -31,9 +31,9 @@ void City::setDist(const int n)
 	if (n >= 0) dist = n;
 }
 
-void City::addNeighbor(City* c)
+void City::addNeighbor(int i)
 {
-	neighbors.pushBack(c);
+	neighbors.pushBack(i);
 }
 
 City& City::operator=(const City& c)

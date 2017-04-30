@@ -11,37 +11,29 @@ void Map::readFile(const char* testFile)
 	char* second = new char[20];
 	int n1, n2;
 	if (!input) throw "A fajl megnyitasa sikertelen.";
-	try
+	while (input.eof() == 0)
 	{
-		while (input.eof() == 0)
+		input >> first;
+		input >> second;
+		City c1(first);
+		City c2(second);
+		if (cities.isElement(c1) == false)
 		{
-			if (cities.getCount() == cities.getSize()) throw "FIGYELEM! Az inputban megadott terkep merete tul nagy, a beolvasott terkep hianyos lehet!";
-			input >> first;
-			input >> second;
-			City c1(first);
-			City c2(second);
-			if (cities.isElement(c1) == false)
-			{
-				cities.pushBack(c1);
-				n1 = cities.getCount() - 1;
-			}
-			else n1 = cities.position(c1);
-			if (cities.isElement(c2) == false)
-			{
-				cities.pushBack(c2);
-				n2 = cities.getCount() - 1;
-			}
-			else n2 = cities.position(c2);
-			cities[n1].neighbors.pushBack(&(cities[n2]));
-			cities[n2].neighbors.pushBack(&(cities[n1]));
+			cities.pushBack(c1);
+			n1 = cities.getCount() - 1;
 		}
-		if (cities.getCount()==1) throw 0; //ha az input fajlban egy sor sincs, vagyis a terkep ures
-	}
-	catch (const char* exc)
-	{
-		cout << exc << endl;
+		else n1 = cities.position(c1);
+		if (cities.isElement(c2) == false)
+		{
+			cities.pushBack(c2);
+			n2 = cities.getCount() - 1;
+		}
+		else n2 = cities.position(c2);
+		cities[n1].neighbors.pushBack(n2);
+		cities[n2].neighbors.pushBack(n1);
 	}
 	input.close();
+	if (cities.getCount() == 1) throw 0; //ha az input fajlban egy sor sincs, vagyis a terkep ures
 }
 
 void Map::printMap()
@@ -73,22 +65,22 @@ void Map::printTransfers(int rootIndex)
 
 void Map::BFS(const int rootIndex)
 {
-	Queue<City*> q;
+	Queue<int> q;
 	cities[rootIndex].setDist(0);
 	for (int i = 0; i < cities[rootIndex].neighbors.getCount();i++)
 	{
-		cities[rootIndex].neighbors[i]->setDist(1);
+		cities[cities[rootIndex].neighbors[i]].setDist(1);
 		q.pushBack(cities[rootIndex].neighbors[i]);
 	}
 	while (q.isEmpty() != true)
 	{
-		City* cptr = q.popFront();
-		for (int j = 0; j < cptr->neighbors.getCount(); j++)
+		int c_index = q.popFront();
+		for (int j = 0; j < cities[c_index].neighbors.getCount(); j++)
 		{
-			if (cptr->neighbors[j]->getDist() == -1)
+			if (cities[cities[c_index].neighbors[j]].getDist() == -1)
 			{
-				cptr->neighbors[j]->setDist(cptr->getDist() + 1);
-				q.pushBack(cptr->neighbors[j]);
+				cities[cities[c_index].neighbors[j]].setDist(cities[c_index].getDist() + 1);
+				q.pushBack(cities[c_index].neighbors[j]);
 			}
 		}
 	}

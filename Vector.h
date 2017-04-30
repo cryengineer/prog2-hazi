@@ -9,7 +9,7 @@ class Vector
 
 public:
 
-	Vector() : size(25), count(0) //parameter nelkuli konstruktor
+	Vector() : size(5), count(0) //parameter nelkuli konstruktor
 	{
 		data = new itemT[size];
 	} 
