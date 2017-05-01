@@ -5,7 +5,7 @@
 template <class itemT>
 class Queue
 {
-	struct unit
+	struct unit //listaelem + a kovetkezo elemre mutato pointer
 	{
 		itemT item;
 		unit* next;
@@ -22,9 +22,9 @@ public:
 		while (isEmpty() != true) popFront();
 	}
 
-	void pushBack(itemT newItem);
-	itemT popFront();
-	void print();
+	void pushBack(itemT newItem); //betesz egy elemet a Queue vegere
+	itemT popFront(); //levesz egy elemet a Queue elejerol, es vissza is adja
+	void print(); //kiirja a Queue tartalmat
 
 	bool isEmpty()
 	{

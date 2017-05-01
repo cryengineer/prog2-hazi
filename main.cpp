@@ -6,7 +6,7 @@ int main()
 {
 	try
 	{
-		Map map("Hungary.txt");
+		Map map("asd.txt");
 		map.printMap();
 		cout << endl << "Kerlek add meg annak a varosnak az indexet, ahonnan utazni szeretnel." << endl;
 		int rootIndex = -1;

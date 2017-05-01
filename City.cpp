@@ -50,7 +50,6 @@ bool City::operator==(const City& c)
 	return false;
 }
 
-
 ostream& operator<<(ostream& os, const City& c)
 {
 	cout << c.getName() << ", dist: " << c.getDist();
